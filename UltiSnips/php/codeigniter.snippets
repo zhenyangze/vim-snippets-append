@@ -1,0 +1,552 @@
+snippet ci_anchor "CI - Anchor Helper" i 
+anchor('${1:url}', '${2:linkname}', '${3:attributes}');
+endsnippet
+snippet ci_ci_base "CI - URL Helper - base_url" i 
+base_url('${1:}')
+endsnippet
+snippet ci_calendar "CI - Calendar Helper" i 
+$this->load->library('calendar');
+
+$data = array(
+	'${1:day}'  => '${2:link}',
+	'${3:day}'  => '${4:link}'
+);
+
+echo $this->calendar->generate(${5:year}, ${6:month}, $data);
+endsnippet
+snippet ci_cart_add "CI - Add to Cart" i 
+$data = array(
+	'id'      => '${1:sku_123ABC}',
+	'qty'     => ${2:1},
+	'price'   => '${3:19.56}',
+	'name'    => '${4:T-Shirt}',
+	'options' => array('${5:Size}' => '${6:L}', '${7:Color}' => '${8:Red}')
+);
+
+$this->cart->insert($data);
+endsnippet
+snippet ci_cart_update "CI - Update Cart" i 
+$data = array(
+	'rowid' => '${1:yourid}',
+	'qty'   => ${2:3}
+);
+
+$this->cart->update($data);
+endsnippet
+snippet ci_ci_start "CI - Generic Starter Class" i 
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+$0
+
+endsnippet
+snippet ci_construct "CI - Class Constructor" i 
+public function __construct()
+{
+	parent::__construct();
+	${0://Do your magic here}
+}
+endsnippet
+snippet ci_controller "CI - Base Controller" i 
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class ${1:Controllername} extends ${2:CI}_Controller {
+
+	public function index()
+	{
+		$0
+	}
+
+}
+
+endsnippet
+snippet ci_cookie "CI - Cookie" i 
+$this->input->cookie()('${1:name}');
+endsnippet
+snippet ci_crud "CI - Simple CRUD Controller" i 
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class ${1:Controllername} extends ${2:CI}_Controller {
+
+	public function __construct()
+	{
+		parent::__construct();
+		${0://Load Dependencies}
+
+	}
+
+	// List all your items
+	public function index( $offset = 0 )
+	{
+
+	}
+
+	// Add a new item
+	public function add()
+	{
+
+	}
+
+	//Update one item
+	public function update( $id = NULL )
+	{
+
+	}
+
+	//Delete one item
+	public function delete( $id = NULL )
+	{
+
+	}
+}
+
+endsnippet
+snippet ci_db_affected "CI - Active Record DB Affected Rows" i 
+$this->db->affected_rows();
+endsnippet
+snippet ci_db_delete "CI - Active Record DB Delete" i 
+$this->db->delete('${1:Table}');
+endsnippet
+snippet ci_db_free_result "CI - Active Record DB Free Result" i 
+$${1:Var}->free_result();
+endsnippet
+snippet ci_db_from "CI - Active Record DB From" i 
+$this->db->from('${1:Table}');
+endsnippet
+snippet ci_db_get "CI - Active Record DB Get" i 
+$this->db->get('${1:Table}'${2:, ${3:limit}, ${4:offset}});
+endsnippet
+snippet ci_db_group "CI - Active Record DB Group By" i 
+$this->db->group_by('${1:title}');
+endsnippet
+snippet ci_db_insert "CI - Active Record DB Insert" i 
+$this->db->insert('${1:Table}', $${2:object});
+endsnippet
+snippet ci_db_insert_id "CI - Active Record DB Last Inserted Id" i 
+$this->db->insert_id();
+endsnippet
+snippet ci_db_insertbatch "CI - Active Record DB Insert Batch" i 
+$this->db->insert_batch('${1:Table}', $${2:object});
+endsnippet
+snippet ci_db_join "CI - Active Record DB Join" i 
+$this->db->join('${1:Table}', '${2:table.column} ${3:=} ${4:table.column}'${5:, 'left'});
+endsnippet
+snippet ci_db_last "CI - Active Record DB Helper Functions" i 
+$this->db->last_query();
+endsnippet
+snippet ci_db_like "CI - Active Record DB LIKE" i 
+$this->db->like('${1:Field / comparison}', $${2:Value}, 'BOTH');
+endsnippet
+snippet ci_db_limit "CI - Active Record DB Helper Functions" i 
+$this->db->limit(${1:num});
+endsnippet
+snippet ci_db_num_fields "CI - Active Record DB Num Fields" i 
+$${1:Var}->num_fields();
+endsnippet
+snippet ci_db_num_rows "CI - Active Record DB Num Rows" i 
+$${1:Var}->num_rows();
+endsnippet
+snippet ci_db_or_like "CI - Active Record DB OR LIKE" i 
+$this->db->or_like('${1:Field}', $${2:Value}, 'BOTH');
+endsnippet
+snippet ci_db_order "CI - Active Record DB Order By" i 
+$this->db->order_by('${1:title}', '${2:desc}');
+endsnippet
+snippet ci_db_result "CI - Active Record DB Result" i 
+$${1:Var}->result();
+endsnippet
+snippet ci_db_result_array "CI - Active Record DB Result Array" i 
+$${1:Var}->result_array();
+endsnippet
+snippet ci_db_row "CI - Active Record DB Row" i 
+$${1:Var}->row();
+endsnippet
+snippet ci_db_row_array "CI - Active Record DB Row Array" i 
+$${1:Var}->row_array();
+endsnippet
+snippet ci_db_select "CI - Active Record DB Select" i 
+$this->db->select('${1:field1, field2}');
+endsnippet
+snippet ci_db_truncate "CI - Active Record Truncate Table" i 
+$this->db->truncate('${1:Table}');
+endsnippet
+snippet ci_db_update "CI - Active Record DB Update" i 
+$this->db->update('${1:Table}', $${2:object});
+endsnippet
+snippet ci_db_where "CI - Active Record DB Where" i 
+$this->db->where('${1:Field / comparison}', $${2:Value});
+endsnippet
+snippet ci_dd "" i 
+var_dump ($${1:variable});
+die();
+endsnippet
+snippet ci_display_cart "CI - Simple Cart Template" i 
+<?php echo form_open('path/to/controller/update/function'); ?>
+
+<table cellpadding="6" cellspacing="1" style="width:100%" border="0">
+
+<tr>
+	<th>QTY</th>
+	<th>Item Description</th>
+	<th style="text-align:right">Item Price</th>
+	<th style="text-align:right">Sub-Total</th>
+</tr>
+
+<?php $i = 1; ?>
+
+<?php foreach ($this->cart->contents() as $items): ?>
+
+	<?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
+
+	<tr>
+		<td><?php echo form_input(array('name' => $i.'[qty]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5')); ?></td>
+		<td>
+		<?php echo $items['name']; ?>
+
+			<?php if ($this->cart->has_options($items['rowid']) == TRUE): ?>
+
+				<p>
+					<?php foreach ($this->cart->product_options($items['rowid']) as $option_name => $option_value): ?>
+
+						<strong><?php echo $option_name; ?>:</strong> <?php echo $option_value; ?><br />
+
+					<?php endforeach; ?>
+				</p>
+
+			<?php endif; ?>
+
+		</td>
+		<td style="text-align:right"><?php echo $this->cart->format_number($items['price']); ?></td>
+		<td style="text-align:right">$<?php echo $this->cart->format_number($items['subtotal']); ?></td>
+	</tr>
+
+<?php $i++; ?>
+
+<?php endforeach; ?>
+
+<tr>
+	<td colspan="2"> </td>
+	<td class="right"><strong>Total</strong></td>
+	<td class="right">$<?php echo $this->cart->format_number($this->cart->total()); ?></td>
+</tr>
+
+</table>
+
+<p><?php echo form_submit('', 'Update your Cart'); ?></p>
+endsnippet
+snippet ci_echopre "" i 
+echo "<pre>";
+print_r ($${1:variable});
+echo "</pre>";
+endsnippet
+snippet ci_email "CI - Email Boilerplate" i 
+$this->load->library('email');
+
+$this->email->from('${1:email@email.com}', '${2:Name}');
+$this->email->to('${3:someone@example.com}');
+$this->email->cc('${4:another@example.com}');
+$this->email->bcc('${5:and@another.com}');
+
+$this->email->subject('${6:subject}');
+$this->email->message('${7:message}');
+
+$this->email->send();
+
+echo $this->email->print_debugger();
+endsnippet
+snippet ci_fetch_class "CI - Fetch Class" i 
+$this->router->fetch_class();
+endsnippet
+snippet ci_fetch_method "CI - Fetch Method" i 
+$this->router->fetch_method();
+endsnippet
+snippet ci_fetch_module "CI - Fetch Module" i 
+$this->router->fetch_module('');
+endsnippet
+snippet ci_flashdata "CI - Flashdata" i 
+$this->session->flashdata('${1:name}');
+endsnippet
+snippet ci_folder_index "" i 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>403 Forbidden</title>
+</head>
+<body>
+
+<p>Directory access is forbidden.</p>
+
+</body>
+</html>
+endsnippet
+snippet ci_form_checkbox "CI - Form Helper - Checkbox" i 
+form_checkbox(${1:name}, ${2:value}, TRUE);
+endsnippet
+snippet ci_form_close "CI - Form Helper - Close" i 
+form_close();
+endsnippet
+snippet ci_form_dropdown "CI - Form Helper - Dropdown" i 
+form_dropdown('${1:name}', $options, '${2:default}');
+endsnippet
+snippet ci_form_hidden "CI - Form Helper - Hidden Field" i 
+form_hidden('${1:name}', '${2:value}');
+endsnippet
+snippet ci_form_input "CI - Form Helper - Input Field" i 
+form_input('${1:name}', '${2:value}'${3:, $attributes});
+endsnippet
+snippet ci_form_label "CI - Form Helper - Label" i 
+form_label('${1:What is your Name}', '${2:username}'${3:, $attributes});
+endsnippet
+snippet ci_form_open "CI - Form Open" i 
+form_open('${1:url}', '', $hidden);
+endsnippet
+snippet ci_form_password "CI - Form Helper - Password Field" i 
+form_password('${1:name}', '${2:value}');
+endsnippet
+snippet ci_form_submit "CI - Form Helper - Submit" i 
+form_submit('${1:name}', '${2:value}');
+endsnippet
+snippet ci_form_textarea "CI - Form Helper - Text Area" i 
+form_textarea('${1:name}', '${2:value}', '${3:attributs}');
+endsnippet
+snippet ci_form_upload "CI - Form Helper - Upload Field" i 
+form_upload('${1:name}');
+endsnippet
+snippet ci_form_validation "CI - Form Validation Rule" i 
+$this->form_validation->set_rules('${1:fieldname}', '${2:fieldlabel}', '${3:trim}|${4:required}|${5:min_length[${6:5}]}|${7:max_length[${8:12}]}');
+endsnippet
+snippet ci_form_validation_run "CI - Form Validation Run" i 
+if ($this->form_validation->run() == ${1:TRUE or FALSE}) {
+	${2:# code...}
+} else {
+	${3:# code...}
+}
+endsnippet
+snippet ci_form_validation_sv "CI - Form Validation Set Value" i 
+$this->form_validation->set_value('${1:field}')
+endsnippet
+snippet ci_generate_table "CI - Generate Table" i 
+$this->load->library('table');
+
+$data = array(
+	array('${1:name}', '${2:Color}', '${3:Size}'),
+	array('${4:Fred}', '${5:Blue}', '${6:Small}'),
+	array('${7:Mary}', '${8:Red}', '${9:Large}'),
+	array('${10:John}', '${11:Green}', '${12:Medium}')
+);
+
+echo $this->table->generate($data);
+endsnippet
+snippet ci_get "CI - $_GET" i 
+$this->input->get('${1:name}')
+endsnippet
+snippet ci_get_instance "CI - Assign the CodeIgniter object to a variable" i 
+$${1:CI} =& get_instance();
+endsnippet
+snippet ci_get_post "CI - $_GET / $_POST" i 
+$this->input->get_post('${1:name}');
+endsnippet
+snippet ci_get_request_header "CI - Get request header" i 
+$this->input->get_request_header();
+endsnippet
+snippet ci_ip_address "CI - Get ip address" i 
+$this->input->ip_address();
+endsnippet
+snippet ci_is_ajax "CI - Is ajax request" i 
+$this->input->is_ajax_request()
+endsnippet
+snippet ci_is_cli "CI - Is CLI request" i 
+$this->input->is_cli_request()
+endsnippet
+snippet ci_library "CI - New Library" i 
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class ${1:LibraryName}
+{
+	protected $ci;
+
+	public function __construct()
+	{
+        $this->ci =& get_instance();
+	}
+
+	$0
+
+}
+
+endsnippet
+snippet ci_load_helper "CI - Load Helper File" i 
+$this->load->helper('${1:Helper Name}');
+endsnippet
+snippet ci_load_library "CI - Load Library" i 
+$this->load->library('${1:Library Name}'${2:, $${3:config}});
+endsnippet
+snippet ci_load_model "CI - Load Model" i 
+$this->load->model('${1:Model File}');
+endsnippet
+snippet ci_load_module "HMVC CI - Load Module Controller" i 
+$this->load->module('${1:Module Directory/Name}');
+endsnippet
+snippet ci_load_view "CI - Load View" i 
+$this->load->view('${1:View File}'${2:, $${4:data}}${3:, FALSE});
+endsnippet
+snippet ci_log "CI - Log Message" i 
+log_message('${1:error}','${2:message}');
+endsnippet
+snippet ci_migration "CI - Base Migration" i 
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Migration_${1:Class_name} extends ${2:CI}_Migration {
+
+	public function __construct()
+	{
+		$this->load->dbforge();${3:
+		$this->load->database();}
+	}
+
+	public function up() {
+		${4}
+	}
+
+	public function down() {
+		${5}
+	}
+
+}
+endsnippet
+snippet ci_model "CI - Base Model" i 
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class ${1:ModelName} extends ${2:CI}_Model {
+
+	$0
+
+}
+
+endsnippet
+snippet ci_output_json "CI - output Json" i 
+$this->output->set_content_type('application/json')->set_output(json_encode(${1:$json}));
+endsnippet
+snippet ci_output_profiler "CI - Enable Profiler" i 
+$this->output->enable_profiler(${1:TRUE});
+endsnippet
+snippet ci_pagination "CI - Pagination Boilerplate" i 
+$this->load->library('pagination');
+
+$config['base_url'] = '${1:url}';
+$config['total_rows'] = ${2:100};
+$config['per_page'] = ${3:10};
+$config['uri_segment'] = ${4:3};
+$config['num_links'] = ${4:4};
+$config['full_tag_open'] = '${5:<p>}';
+$config['full_tag_close'] = '${6:</p>}';
+$config['first_link'] = '${7:First}';
+$config['first_tag_open'] = '${8:<div>}';
+$config['first_tag_close'] = '${9:</div>}';
+$config['last_link'] = '${10:Last}';
+$config['last_tag_open'] = '${11:<div>}';
+$config['last_tag_close'] = '${12:</div>}';
+$config['next_link'] = '${13:&gt};';
+$config['next_tag_open'] = '${14:<div>}';
+$config['next_tag_close'] = '${15:</div>}';
+$config['prev_link'] = '${16:&lt;}';
+$config['prev_tag_open'] = '${17:<div>}';
+$config['prev_tag_close'] = '${18:</div>}';
+$config['cur_tag_open'] = '${19:<b>}';
+$config['cur_tag_close'] = '${20:</b>}';
+
+$this->pagination->initialize($config);
+
+echo $this->pagination->create_links();
+endsnippet
+snippet ci_post "CI - $_POST" i 
+$this->input->post('${1:name}')
+endsnippet
+snippet ci_redirect "CI - URL Helper - redirect with response code" i 
+redirect('${1:}','location',${2:})
+endsnippet
+snippet ci_redirect "CI - URL Helper - redirect" i 
+redirect('${1:}','refresh')
+endsnippet
+snippet ci_request_headers "CI - Request Headers" i 
+$this->input->request_headers()
+endsnippet
+snippet ci_run_validation "CI - Run form validation" i 
+$this->form_validation->run()
+endsnippet
+snippet ci_server "CI - $_SERVER" i 
+$this->input->server('${1:name}');
+endsnippet
+snippet ci_session_all_userdata "CI - Session - Retrieving All Session Data" i 
+$this->session->all_userdata();
+endsnippet
+snippet ci_session_sess_destroy "CI - Session - Destroying a Session" i 
+$this->session->sess_destroy();
+endsnippet
+snippet ci_session_set_userdata "CI - Session - Adding Custom Session Data" i 
+$array = array(
+	'${1:key}' => '${2:value}'
+);
+
+$this->session->set_userdata( $array );
+endsnippet
+snippet ci_session_unset_userdata "CI - Session - Removing Session Data" i 
+$this->session->unset_userdata('${1:some_name}');
+endsnippet
+snippet ci_session_userdata "CI - Session - Retrieving Session Data" i 
+$this->session->userdata('${1:item}');
+endsnippet
+snippet ci_set_cookie "CI - Set Cookie" i 
+$this->input->set_cookie('${1:name}', '${2:value}', '${3:expire}', '${4:domain}', '${5:path}','${6:prefix}', '${7:secure}');
+endsnippet
+snippet ci_set_flashdata "CI - Set flashdata" i 
+$this->session->set_flashdata('${1:name}', '${2:value}');
+endsnippet
+snippet ci_set_json "CI - Set content type to json" i 
+$this->output->set_content_type('application/json');
+endsnippet
+snippet ci_site "CI - URL Helper - site_url" i 
+site_url('${1:}')
+endsnippet
+snippet ci_th "PHP - $this or other object use" i 
+$${1:this}->$2
+endsnippet
+snippet ci_unit_run "" i 
+$this->unit->run(
+	$result = ${1},
+	$expected = ${2:TRUE}${3:,
+	'${1}'}${4:,
+	\htmlentities($result).' == '. \htmlentities($expected)}
+);
+endsnippet
+snippet ci_upload "CI - Upload Boilerplate" i 
+$config['upload_path'] = '${1:./uploads/}';
+$config['allowed_types'] = '${2:gif|jpg|png}';
+$config['max_size']  = '${3:100}';
+$config['max_width']  = '${4:1024}';
+$config['max_height']  = '${5:768}';
+
+$this->load->library('upload', $config);
+
+if ( ! $this->upload->do_upload()){
+	$error = array('error' => $this->upload->display_errors());
+}
+else{
+	$data = array('upload_data' => $this->upload->data());
+	echo "success";
+}
+endsnippet
+snippet ci_uri_segment "CI - URI Segment" i 
+$this->uri->segment(${1:3})
+endsnippet
+snippet ci_user_agent "CI - Get user agent" i 
+$this->input->user_agent()
+endsnippet
+snippet ci_valid_ip "CI - Valid IP" i 
+$this->input->valid_ip('${1:ip}')
+endsnippet
