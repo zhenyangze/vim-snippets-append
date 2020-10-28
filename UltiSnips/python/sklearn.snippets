@@ -1,0 +1,798 @@
+priority -50
+
+## numpy
+snippet npi "import numpy" b
+import numpy as np
+endsnippet
+
+## pandas
+snippet pai "import numpy" b
+import pandas as pd
+endsnippet
+
+### matplot
+snippet mt.matplotlib.pyplot.single  "matplot.初始化.单图" b
+import matplotlib.pyplot as plt
+import numpy as np
+fig = plt.figure(num=1, figsize=${1:(15, 8)}, dpi=${2:80}) 
+plt.show()
+endsnippet
+
+snippet mt.matplotlib.pyplot.multi "matplot.初始化.多图" b
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig = plt.figure(num=${1:2}, figsize=${2:(15, 8}),dpi=${3:80}) 
+
+ax1 = fig.add_subplot(2, 1, 1)  
+ax2 = fig.add_subplot(2, 1, 2)
+
+ax1.plot(np.arange(0,1,0.1), range(0, 10, 1), color='g')
+ax2.plot(np.arange(0,1,0.1), range(0, 20, 2), color='r')
+
+plt.show()
+endsnippet
+
+snippet mt.matplotlib.pyplot.plot "Matplotlib:画图.折线图" b
+ax.plot(${1:x}, ${2:y}, linestyle=${3:'--'}, alpha=${4:0.5}, color=${5:'r'}, label=${6:'label'})
+endsnippet
+
+snippet mt.matplotlib.pyplot.bar "Matplotlib:画图.柱状图" b
+ax.bar(${1:x}, ${2:y}, width=${3:0.35}, alpha=${4:0.4}, color=${5:'b'}, label=${6:'legend1'})
+endsnippet
+
+snippet mt.matplotlib.pyplot.hist "Matplotlib:画图.直方图" b
+ax.hist(${1:x}, bins=${2:20}, normed=${3:1}, histtype=${4:'bar'}, facecolor=${5:'pink'}, alpha=${6:0.75}, cumulative=${7:True}, rwidth=${8:0.8})
+endsnippet
+
+snippet mt.matplotlib.pyplot.scatter "Matplotlib:画图.散点图" b
+ax.scatter(${1:x}, ${2:y}, s=${3:x*1000}, c=${4:'y'}, marker=${5:(5, 1)}, alpha=${6:0.5}, lw=${7:2}, facecolors=${8:'none'})
+endsnippet
+
+snippet mt.matplotlib.pyplot.plot_surface "Matplotlib:画图.三维图" b
+from mpl_toolkits.mplot3d import Axes3D
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(${1:x}, ${2:y}, ${3:z}, rstride=${4:2}, cstride=${5:1}, cmap=${6:plt.cm.coolwarm}, alpha=${7:0.8})
+endsnippet
+
+snippet mt.matplotlib.pyplot.Rectangle "Matplotlib:画图.矩形图" b
+ax.Rectangle(${1:(0.1,0.2)}, ${2:0.2}, ${3:0.3}, color='${4:r}')
+endsnippet
+
+snippet mt.matplotlib.pyplot.Circle "Matplotlib:画图.圆形图" b
+ax.Circle(${1:(0.7,0.2)}, ${2:0.15}, color=${3:'r'}, alpha=${4:0.3})
+endsnippet
+
+snippet mt.matplotlib.pyplot.Polygon "Matplotlib:画图.多边形" b
+ax.Polygon(${1:[[0.45,0.45]}, ${2:[0.65,0.6]}, ${3:[0.2,0.6]]})
+endsnippet
+
+## sklearn
+
+### 加载数据
+snippet sk.load_boston "Sklearn:加载波士顿房价数据；用于回归问题" b
+from sklearn.datasets import load_boston
+boston = load_boston()
+endsnippet
+
+snippet sk.load_iris  "Sklern:加载iris 数据集；用于分类问题" b
+from sklearn.datasets import load_iris
+iris = load_iris()
+endsnippet
+
+snippet sk.load_diabetes "Sklearn:加载糖尿病数据集；用于回归问题" b
+from sklearn.datasets import load_diabetes
+diabetes = load_diabetes()
+endsnippet
+
+snippet sk.load_digits "Sklearn:加载手写字符集；用于分类问题" b
+from sklearn.datasets import load_digits
+digits = load_digits()
+endsnippet
+
+snippet sk.load_linnerud "Sklearn:加载体能训练数据集数据集；用于多元回归问题" b
+from sklearn.datasets import load_linnerud
+linnerud = load_linnerud()
+endsnippet
+
+snippet sk.load_sample_image "Sklearn:加载样本图案" b
+from sklearn.datasets import load_sample_image
+img = load_sample_image('${1:image path}')
+endsnippet
+
+snippet sk.make_classification "Sklearn:生成三元分类模型数据" b
+from sklearn.datasets import make_classification
+data, target = make_classification(n_samples=${1:100}, n_features${2:2}, n_informative=${3:3},
+					n_redundant=${4:0}, n_repeated=${5:0}, n_classes=${6:2}, n_clusters_per_class=${7:1})
+endsnippet
+
+snippet sk.make_blobs "Sklearn:生成聚类算法的测试数据" b
+from sklearn.datasets import make_blobs
+X, y = make_blobs(n_samples=${1:1000}, n_features=${2:2}, centers=${3:3}, cluster_std=${4:[1.0, 3.0, 2.0]})
+endsnippet
+
+snippet sk.make_gaussian_quantiles "Sklearn:生成多维正态分布的数据" b
+from sklearn.datasets import make_gaussian_quantile
+X, y = make_gaussian_quantiles(mean=${1:None}, cov=${2:1.0}, n_samples=${3:100}, n_features=${4:2}, n_classes=${5:3},  
+                    shuffle=${6:True}, random_state=${7:None})  
+endsnippet
+
+snippet sk.make_hastie_10_2 "Sklearn:生成2分类数据(利用Hastie算法)" b
+from sklearn.datasets import make_hastie_10_2
+X, y = make_hastie_10_2(n_samples=${1:1000})
+endsnippet
+
+snippet sk.make_circles "Sklearn:自定义生成圆形数据" b
+from sklearn.datasets import make_circles
+X, y = make_circles(n_samples=${1:100}, shuffle=${2:True}, noise=${3:None}, random_state=${4:None}, factor=${5:0.8})  
+endsnippet
+
+snippet sk.make_moons "Sklearn:生成半环形图数据" b
+from sklearn.datasets import make_moons
+X, y = sklearn.datasets.make_moons(n_samples=${1:100}, shuffle=${2:True}, noise=${3:None}, random_state=${4:None})
+endsnippet
+
+snippet sk.make_regression "Sklearn:生成回归样本数据" b
+from sklearn.datasets import make_regression
+X, y, coef = make_regression(n_samples=${1:1000}, n_features=${2:1}, noise=${3:10}, coef=${4:True})
+endsnippet
+
+### 特征提取
+snippet sk.feature_extraction.DictVectorizer "Sklearn:特征提取.从字典类型加载特征" b
+from sklearn.feature_extraction import DictVectorizer
+vec = DictVectorizer().fit_transform(${1:measurements})
+vec.get_feature_names()
+endsnippet
+
+snippet sk.feature_extraction.text "Sklearn:特征提取.文本特征提取" b
+from sklearn.feature_extraction.text import CountVectorizer
+corpus = ['This is the first document.',
+          'This is the second second document.',
+          'And the third one.',
+          'Is this the first document?',]
+vectorizer = CountVectorizer()
+X = vectorizer.fit_transform(corpus)  # 默认提取至少 包含2个字母的单词
+print('所有特征：',vectorizer.get_feature_names())
+print('样本特征向量：\n',X.toarray())  # X本身为稀疏矩阵存储形式，toarray转换为二维矩阵形式
+print('document属性的列索引：', vectorizer.vocabulary_.get('document'))  # 从 特征 名称到矩阵的（列索引）
+endsnippet
+
+snippet sk.feature_extraction.text_build "Sklearn:特征提取.变参文本特征提取" b
+from sklearn.feature_extraction.text import CountVectorizer
+corpus = ['This is the first document.',
+          'This is the second second document.',
+          'And the third one.',
+          'Is this the first document?',]
+
+# 提取一个单词或两个单词形成的词组。这样就能识别“is this”和“this is”这两种词汇了
+bigram_vectorizer = CountVectorizer(ngram_range=(1, 2),token_pattern=r'\b\w+\b', min_df=1)
+analyze = bigram_vectorizer.build_analyzer()
+print('所有分词：', analyze('Bi-grams are cool!'))
+endsnippet
+
+
+snippet sk.feature_extraction.VarianceThreshold "Sklearn.特征提取.移除低方差特征" b
+from sklearn.feature_selection import VarianceThreshold
+sel = VarianceThreshold(threshold=${1:0.2})
+X_transformed = sel.fit_transform(${2:X})
+endsnippet
+
+snippet sk.feature_selection.SelectKBest "Sklearn:特征提取.排序选择优秀特征(单变量特征选择)" b
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import chi2  # 引入卡方检验统计量
+${4:X_new} = SelectKBest(chi2, k=${1:2}).fit_transform(${2:X}, ${3:y})
+endsnippet
+
+snippet sk.feature_selection.RFE "Sklearn:特征提取.递归式特征消除" b
+from sklearn.svm import SVC
+from sklearn.feature_selection import RFE
+svc = SVC(kernel="${1:linear}", C=${2:1})
+rfe = RFE(estimator=svc, n_features_to_select=${3:1}, step=${4:1})
+rfe.fit(X, y)
+ranking = rfe.ranking_.reshape(digits.images[0].shape)
+endsnippet
+
+snippet sk.preprocessing.SelectFromModel "Sklearn:特征提取.使用SelectFromModel选取特征" b
+from sklearn.feature_selection import SelectFromModel
+from sklearn.linear_model import LassoCV
+
+n_features = [13] # 记录循环中的特征个数
+thresholds=[0]  # 记录门限值
+
+clf = LassoCV()  # 使用Lasso回归
+sfm = SelectFromModel(clf, threshold=${1:0.1})
+sfm.fit(${2:X}, ${3:y})  # 训练模型。找出模型回归系数。
+X_transform = sfm.transform(X) # 根据回归系数、门限，变换数据集
+n_feature = X_transform.shape[1]  # 获取训练以后的特征数目
+n_features.append(n_feature)
+thresholds.append(0.1)
+while n_feature > 2:  # 如果特征数大于2，则从新转换，找最好的两个特征
+    sfm.threshold += 0.1  # 逐渐增加门限，进一步减少特征数目
+    X_transform = sfm.transform(X) # 变换数据集
+    n_feature = X_transform.shape[1]
+    n_features.append(n_feature)  # 记录训练以后的特征数目
+    thresholds.append(sfm.threshold)  # 记录门限值
+
+plt.title("Features with threshold %0.3f." % sfm.threshold)
+plt.plot(thresholds, n_features, 'r')
+plt.xlabel("thresholds")
+plt.ylabel("Feature number")
+plt.show()
+endsnippet
+
+snippet sk.feature_selection.SelectFromModel "Sklearn:特征提取.基于 L1 的特征选取" b
+from sklearn.svm import LinearSVC
+from sklearn.feature_selection import SelectFromModel
+# X, y = iris.data, iris.target
+lsvc = LinearSVC(C=${1:0.01}, penalty=${2:'l1'}, dual=${3:False}).fit(X, y)
+model = SelectFromModel(lsvc, prefit=True)
+X_new = model.transform(X)
+print('新数据集维度：',X_new.shape)
+endsnippet
+
+snippet sk.feature_selection.SelectFromModel "Sklearn:特征提取.基于 Tree（树）的特征选取" b
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.datasets import load_iris
+from sklearn.feature_selection import SelectFromModel
+#dataset = load_iris()
+#X, y = dataset.data, dataset.target
+clf = ExtraTreesClassifier()
+clf = clf.fit(X, y)
+print('属性重要程度：',clf.feature_importances_)
+
+model = SelectFromModel(clf, prefit=True)
+X_new = model.transform(X)
+print('新数据集维度：',X.shape)
+endsnippet
+
+snippet sk.feature_selection.pipeline "Sklearn:特征提取.特征选取作为 pipeline（管道）的一部分" b
+from sklearn.svm import LinearSVC
+from sklearn.feature_selection import SelectFromModel
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.pipeline import Pipeline
+
+clf = Pipeline([
+  ('feature_selection', SelectFromModel(LinearSVC(penalty="l1"))),
+  ('classification', RandomForestClassifier())
+])
+clf.fit(X, y)
+endsnippet
+
+### 数据预处理
+snippet sk.preprocessing.StandardScaler "Sklearn:预处理.标准化" b
+from sklearn.preprocessing import scale 
+scaler = scale(${1:X_train}, axis=${2:0})
+# print('均值：', scaler.mean(axis=0))
+# print('方差：', scaler.std(axis=0))
+endsnippet
+
+snippet sk.preprocessing.MinMaxScaler "Sklearn:预处理.将特征缩放至特定范围内(0-1)" b
+from sklearn.preprocessing import MinMaxScaler
+min_max_scaler = MinMaxScaler()
+X_train_minmax = min_max_scaler.fit_transform(${1:X_train})  # 训练同时转换
+# print('每列最大值：', X_train_minmax.max(axis=0))   # 每列最大值为1
+# print('每列最小值：', X_train_minmax.min(axis=0))    # 每列最小值为0
+# 缩放对象是记录了，平移距离和缩放大小，再对数据进行的操作
+# print('先平移：', min_max_scaler.min_)
+# print('再缩放：', min_max_scaler.scale_)
+endsnippet
+
+snippet sk.preprocessing.MaxAbsScaler "Sklearn:预处理.缩放稀疏（矩阵）数据(-1,1)" b
+from sklearn.preprocessing import MaxAbsScaler 
+max_abs_scaler = MaxAbsScaler()
+X_train_maxabs = max_abs_scaler.fit_transform(${1:X_train})  # 训练同时转换
+endsnippet
+
+snippet sk.preprocessing.RobustScaler "Sklearn:预处理.缩放有离群值的数据" b
+from sklearn.preprocessing import RobustScaler
+robust_scale = RobustScaler()
+X_train_robust = robust_scale.fit_transform(${1:X_train})  # 训练同时转换
+endsnippet
+
+snippet sk.preprocessing.QuantileTransformer "Sklearn:预处理.非线性转换.映射到均匀分布(分位数)" b
+from sklearn.preprocessing import QuantileTransformer
+quantile_transformer = QuantileTransformer(random_state=0)
+X_train_trans = quantile_transformer.fit_transform(${1:X_train})
+# print('源分位数情况：',np.percentile(X_train[:, 0], [0, 25, 50, 75, 100]))
+# print('变换后分位数情况：',np.percentile(X_train_trans[:, 0], [0, 25, 50, 75, 100]))
+endsnippet
+
+snippet sk.preprocessing.QuantileTransformer.normal "Sklearn:预处理.非线性转换.映射到高斯分布" b
+from sklearn.preprocessing import QuantileTransformer
+quantile_transformer = QuantileTransformer(output_distribution='normal', random_state=0)
+X_train_trans = quantile_transformer.fit_transform(${1:X_train})
+# print('源分位数情况：',np.percentile(X_train[:, 0], [0, 25, 50, 75, 100]))
+# print('变换后分位数情况：',np.percentile(X_train_trans[:, 0], [0, 25, 50, 75, 100]))
+endsnippet
+
+snippet sk.preprocessing.normalize "Sklearn:预处理.归一化" b
+from sklearn.preprocessing import normalize
+X_normalized = normalize(${1:X}, norm='${2:l2}')
+endsnippet
+
+snippet sk.preprocessing.Binarizer "Sklearn:预处理.特征二值化" b
+from sklearn.preprocessing import Binarizer
+binarizer = Binarizer().fit(${1:X})
+X_normalized = binarizer.transform(X)
+endsnippet
+
+
+snippet sk.preprocessing.OneHotEncoder "Sklearn:预处理.类别特征编码.独热码" b
+from sklearn.preprocessing import OneHotEncoder
+enc = OneHotEncoder().fit(${1:X})
+enc.transform(${2:X_1}).toarray()
+endsnippet
+
+snippet sk.preprocessing.Imputer "Sklearn:预处理.缺失值插补" b
+from sklearn.preprocessing import Imputer
+imp = Imputer(missing_values='NaN', strategy='mean', axis=0)
+imp.fit_transform(${1:X})
+endsnippet
+
+snippet sk.preprocessing.MissingIndicator "Sklearn:预处理.缺失值标记" b
+from sklearn.preprocessing import MissingIndicator
+indicator = MissingIndicator(missing_values=-1, features="all")
+mask_all = indicator.fit_transform(X)
+endsnippet
+
+snippet sk.preprocessing.PolynomialFeatures "Sklearn:预处理.生成多项式" b
+from sklearn.preprocessing import PolynomialFeatures
+poly = PolynomialFeatures(2, interaction_only=False)
+poly.fit_transform(${1:X})
+endsnippet
+
+snippet sk.preprocessing.FunctionTransformer "Sklearn:预处理.自定义转换器" b
+from sklearn.preprocessing import FunctionTransformer
+transformer = FunctionTransformer(${1:np.log1p}, validate=True)
+endsnippet
+
+### 集成方法
+snippet sk.ensemble.BaggingClassifier "Sklearn:集成方法.Bagging 元估计器" b
+from sklearn.ensemble import BaggingClassifier
+from sklearn.neighbors import KNeighborsClassifier
+bagging = BaggingClassifier(${1:KNeighborsClassifier()}, max_samples=${2:0.5}, max_features=${3:0.5})
+endsnippet
+
+snippet sk.ensemble.RandomForestClassifier "Sklearn:集成方法.随机森林" b
+from sklearn.ensemble import RandomForestClassifier
+clf = RandomForestClassifier(n_estimators=${1:10}, max_features=${2:2})
+clf = clf.fit(X, y)
+endsnippet
+
+snippet sk.ensemble.ExtraTreesClassifier "Sklearn:集成方法.极限随机树" b
+rom sklearn.ensemble import ExtraTreesClassifier
+clf = ExtraTreesClassifier(n_estimators=${1:10}, max_depth=${2:None}, min_samples_split=${3:2}, random_state=${4:0})
+endsnippet
+
+snippet sk.ensemble.AdaBoost "Sklearn:集成方法.AdaBoost弱学习器" b
+from sklearn.ensemble import AdaBoostClassifier
+clf = AdaBoostClassifier(n_estimators=${1:100})
+endsnippet
+
+snippet sk.ensemble.GradientBoostingClassifier "Sklearn:集成方法.GradientBoostingClassifier 梯度树提升" b
+from sklearn.ensemble import GradientBoostingClassifier
+clf = GradientBoostingClassifier(n_estimators=${1:100}, learning_rate=${2:1.0}, max_depth=${3:1}, random_state=${4:0})
+endsnippet
+
+
+snippet sk.ensemble.VotingClassifier "Sklearn:集成方法.VotingClassifier投票分类器" b
+from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import GaussianNB
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import VotingClassifier
+
+clf1 = LogisticRegression(random_state=1)
+clf2 = RandomForestClassifier(random_state=1)
+clf3 = GaussianNB()
+
+eclf = VotingClassifier(estimators=[('lr', clf1), ('rf', clf2), ('gnb', clf3)], voting='hard')  # 无权重投票
+eclf = VotingClassifier(estimators=[('lr', clf1), ('rf', clf2), ('gnb', clf3)], voting='soft', weights=[2,1,2]) # 权重投票
+
+for clf, label in zip([clf1, clf2, clf3, eclf], ['Logistic Regression', 'Random Forest', 'naive Bayes', 'Ensemble']):
+    scores = cross_val_score(clf,X,y,cv=5, scoring='accuracy')
+    print("准确率: %0.2f (+/- %0.2f) [%s]" % (scores.mean(), scores.std(), label))
+
+# 配合网格搜索
+from sklearn.model_selection import GridSearchCV
+params = {'lr__C': [1.0, 100.0], 'rf__n_estimators': [20, 200],}  # 搜索寻找最优的lr模型中的C参数和rf模型中的n_estimators
+grid = GridSearchCV(estimator=eclf, param_grid=params, cv=5)
+grid = grid.fit(iris.data, iris.target)
+print('最优参数：',grid.best_params_)
+endsnippet
+
+snippet sk.model_selection.train_test_split "Sklearn:交叉验证.划分测试集" b
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(
+		${1:data}, ${2:target}, test_size=${3:0.4}, random_state=${4:0})
+endsnippet
+
+snippet sk.model_selection.cross_val_score "Sklearn:交叉验证.计算交叉验证的指标" b
+from sklearn.model_selection import cross_val_score
+scores = cross_val_score(${1:clf}, ${2:data}, ${3:target}, cv=${4:5})
+endsnippet
+
+snippet sk.model_selection.cross_validate "Sklearn:交叉验证.计算交叉验证的多指标评估" b
+from sklearn.model_selection import cross_validate
+scoring = [${1:'precision_macro', 'recall_macro'}]
+scores = cross_validate(${2:clf}, ${3:data}, ${4:target}, scoring=${5:scoring}, cv=${6:5})
+endsnippet
+
+snippet sk.model_selection.KFold "Sklearn:交叉验证.K 折" b
+from sklearn.model_selection import KFold
+kf = KFold(n_splits=${1:2})
+for train, test in kf.split(X):
+	print("%s  %s" % (train, test))
+endsnippet
+
+snippet sk.model_selection.RepeatedKFold "Sklearn:交叉验证.重复 K-折交叉验证" b
+from sklearn.model_selection import RepeatedKFold
+rkf = RepeatedKFold(n_splits=${1:2}, n_repeats=${2:2}, random_state=${3:random_state})
+for train, test in rkf.split(X):
+	print("%s  %s" % (train, test))
+endsnippet
+
+snippet sk.model_selection.LeaveOneOut "Sklearn:交叉验证.留一交叉验证 (LOO)" b
+from sklearn.model_selection import LeaveOneOut
+loo = LeaveOneOut()
+for train, test in loo.split(X):
+	print("%s  %s" % (train, test))
+endsnippet
+
+snippet sk.model_selection.LeavePOut "Sklearn:交叉验证.留 P 交叉验证 (LPO)" b
+from sklearn.model_selection import LeavePOut
+lpo = LeavePOut(p=${1:2})
+for train, test in lpo.split(X):
+	print("%s  %s" % (train, test))
+endsnippet
+
+snippet sk.model_selection.ShuffleSplit "Sklearn:交叉验证.随机排列交叉验证 a.k.a. Shuffle & Split" b
+from sklearn.model_selection import ShuffleSplit
+ss = ShuffleSplit(n_splits=${1:3}, test_size=${2:0.25}, random_state=${3:0})
+for train_index, test_index in ss.split(X):
+	print("%s  %s" % (train_index, test_index))
+endsnippet
+
+snippet sk.model_selection.StratifiedKFold "Sklearn:交叉验证.分层k 折(解决数据不平衡问题)" b
+from sklearn.model_selection import StratifiedKFold
+skf = StratifiedKFold(n_splits=${1:3})
+for train, test in skf.split(X, y):
+	print("%s  %s" % (train, test))
+endsnippet
+
+snippet sk.model_selection.StratifiedShuffleSplit "Sklearn:交叉验证.分层随机排列交叉验证(解决数据不平衡问题)" b
+from sklearn.model_selection import StratifiedShuffleSplit
+sss = StratifiedShuffleSplit(n_splits=${1:3})
+for train, test in sss.split(X, y):
+	print("%s  %s" % (train, test))
+endsnippet
+
+snippet sk.model_selection.GroupKFold "Sklearn:交叉验证.组k-fold(数据源有多个)" b
+from sklearn.model_selection import GroupKFold
+gkf = GroupKFold(n_splits=${1:3})
+# X = ''
+# y = ''
+# groups = []
+for train, test in gkf.split(X, y, groups=groups):
+	print("%s  %s" % (train, test))
+endsnippet
+
+snippet sk.model_selection.LeaveOneGroupOut "Sklearn:交叉验证.留一组交叉验证(数据源有多个)" b
+from sklearn.model_selection import LeaveOneGroupOut
+logo = LeaveOneGroupOut()
+for train, test in logo.split(X, y, groups=groups):
+	print("%s  %s" % (train, test))
+endsnippet
+
+snippet sk.model_selection.LeavePGroupsOut "Sklearn:交叉验证.留 P 组交叉验证(数据源有多个)" b
+from sklearn.model_selection import LeavePGroupsOut
+#X = np.arange(6)
+#y = [1, 1, 1, 2, 2, 2]
+#groups = [1, 1, 2, 2, 3, 3]
+lpgo = LeavePGroupsOut(n_groups=${1:2})
+for train, test in lpgo.split(X, y, groups=groups):
+	print("%s  %s" % (train, test))
+endsnippet
+
+snippet sk.model_selection.GroupShuffleSplit "Sklearn:交叉验证.随机划分分区(数据源有多个)" b
+from sklearn.model_selection import GroupShuffleSplit
+# X = [0.1, 0.2, 2.2, 2.4, 2.3, 4.55, 5.8, 0.001]
+# y = ["a", "b", "b", "b", "c", "c", "c", "a"]
+# groups = [1, 1, 2, 2, 3, 3, 4, 4]
+gss = GroupShuffleSplit(n_splits=${1:4}, test_size=${2:0.5}, random_state=${3:0})
+for train, test in gss.split(X, y, groups=groups):
+	print("%s  %s" % (train, test))
+endsnippet
+
+snippet sk.model_selection.TimeSeriesSplit "Sklearn:交叉验证.时间序列分割" b
+from sklearn.model_selection import TimeSeriesSplit
+# X = np.array([[1, 2], [3, 4], [1, 2], [3, 4], [1, 2], [3, 4]])
+# y = np.array([1, 2, 3, 4, 5, 6])
+tscv = TimeSeriesSplit(n_splits=${1:3})
+for train, test in tscv.split(X):
+	print("%s  %s" % (train, test))
+endsnippet
+
+### 参数优化
+snippet sk.model_selection.GridSearchCV "Sklearn:参数优化.网格搜索GridSearchCV" b
+from sklearn.model_selection import GridSearchCV
+grid = GridSearchCV(estimator=${1:knn}, param_grid=${2:param_grid}, cv=${3:10}, scoring=${4:'accuracy'}) #针对每个参数对进行了10次交叉验证。scoring='accuracy'使用准确率为结果的度量指标。可以添加多个度量指标
+grid.fit(X, y)
+print('网格搜索-度量记录：',grid.cv_results_)  # 包含每次训练的相关信息
+print('网格搜索-最佳度量值:',grid.best_score_)  # 获取最佳度量值
+print('网格搜索-最佳参数：',grid.best_params_)  # 获取最佳度量值时的代定参数的值。是一个字典
+print('网格搜索-最佳模型：',grid.best_estimator_)  # 获取最佳度量时的分类器模型
+endsnippet
+
+snippet sk.model_selection.RandomizedSearchCV "Sklearn:参数优化.随机参数优化" b
+from sklearn.model_selection import RandomizedSearchCV 
+rand = RandomizedSearchCV(${1:knn}, ${2:param_grid}, cv=${3:10}, scoring=${4:'accuracy'}, n_iter=${5:10}, random_state=${6:5})
+rand.fit(X, y)
+
+print('随机搜索-度量记录：',grid.cv_results_)  # 包含每次训练的相关信息
+print('随机搜索-最佳度量值:',grid.best_score_)  # 获取最佳度量值
+print('随机搜索-最佳参数：',grid.best_params_)  # 获取最佳度量值时的代定参数的值。是一个字典
+print('随机搜索-最佳模型：',grid.best_estimator_)  # 获取最佳度量时的分类器模型
+endsnippet
+
+snippet sk.metrics.accuracy_score "Sklearn:模型评估.准确率" b
+from sklearn.metrics import accuracy_score
+accuracy = accuracy_score(${1:y_test}, ${2:y_predict})
+endsnippet
+
+snippet sk.metrics.precision_score "Sklearn:模型评估.精确率" b
+from sklearn.metrics import precision_score 
+accuracy = precision_score(${1:y_test}, ${2:y_predict}, average=${3:'macro'})
+endsnippet
+
+snippet sk.metrics.recall_score "Sklearn:模型评估.召回率" b
+from sklearn.metrics import recall_score
+accuracy = recall_score(${1:y_test}, ${2:y_predict}, average=${3:'weighted'})
+endsnippet
+
+snippet sk.metrics.f1_score "Sklearn:模型评估.f1分数" b
+from sklearn.metrics import f1_score
+accuracy = f1_score(${1:y_test}, ${2:y_predict}, average=${3:'micro'})
+endsnippet
+
+snippet sk.metrics.confusion_matrix "Sklearn:模型评估.混淆矩阵" b
+from sklearn.metrics import confusion_matrix
+confusion_matrix = confusion_matrix(${1:y_test}, ${2:y_predict})
+endsnippet
+
+snippet sk.metrics.mean_squared_error "Sklearn:模型评估.均方误差(MSE)" b
+from sklearn.metrics import mean_squared_error
+mse = mean_squared_error(${1:y_test}, ${2:y_predict})
+endsnippet
+
+snippet sk.metrics.mean_squared_log_error "Sklearn:模型评估.均方对数误差(MSLE)" b
+from sklearn.metrics import mean_squared_log_error
+msle = mean_squared_log_error(${1:y_test}, ${2:y_predict})
+endsnippet
+
+snippet sk.metrics.mean_absolute_error "Sklearn:模型评估.平均绝对值误差(MAE)" b
+from sklearn.metrics import mean_absolute_error
+mae = mean_absolute_error(${1:y_test}, ${2:y_predict})
+endsnippet
+
+snippet sk.metrics.r2_score "Sklearn:模型评估.R2决定系数" b
+from sklearn.metrics import r2_score
+r2 = r2_score(${1:y_test}, ${2:y_predict})
+endsnippet
+
+snippet sk.metrics.cosine_similarity "Sklearn:模型评估.余弦相似度" b
+from sklearn.metrics.pairwise import cosine_similarity
+dist = cosine_similarity(${1:X})
+endsnippet
+
+snippet sk.metrics.pairwise_distances "Sklearn:模型评估.余弦距离= 1 - 余弦相似度" b
+from sklearn.metrics.pairwise import pairwise_distances
+dist = pairwise_distances(${1:X}, metric=${2:'cosine'})
+endsnippet
+
+snippet sk.metrics.pairwise_distances "Sklearn:模型评估.欧氏距离" b
+from sklearn.metrics.pairwise import euclidean_distances
+dist = euclidean_distances(${1:X})
+endsnippet
+
+# 分类器
+snippet sk.classify.RandomForestClassifier "Sklearn:分类器.随机森林分类" b
+from sklearn.ensemble import RandomForestClassifier
+clf = RandomForestClassifier(n_estimators=${1:10}, max_features=${2:2})
+endsnippet
+
+snippet sk.classify.tree.DecisionTreeClassifier "Sklearn:分类器.决策树分类" b
+from sklearn.tree import DecisionTreeClassifier
+clf = DecisionTreeClassifier()
+endsnippet
+
+snippet sk.classify.neighbors.KNeighborsClassifier "Sklearn:分类器.KNN分类器" b
+from sklearn.neighbors import KNeighborsClassifier
+clf = KNeighborsClassifier(n_neighbors = ${1:13})
+endsnippet
+
+snippet sk.classify.svm.SVC "Sklearn:分类器.SVM分类" b
+from sklearn.svm import SVC
+clf = SVC(gamma='${1:scale}')
+endsnippet
+
+snippet sk.classify.linear_model.LogisticRegression "Sklearn:分类器.逻辑回归分类" b
+from sklearn.linear_model import LogisticRegression
+clf = LogisticRegression(solver=${1:'lbfgs'}, multi_class=${2:'ovr'})
+endsnippet
+
+snippet sk.classify.svm.LinearSVC "Sklearn:分类器.linear svm分类" b
+from sklearn.svm import LinearSVC
+clf = LinearSVC(max_iter=${1:10000})
+endsnippet
+
+snippet sk.classify.SGDClassifier "Sklearn:分类器.随机梯度下降分类" b
+from sklearn.linear_model import SGDClassifier
+clf = SGDClassifier(max_iter=${1:1000}, tol=${2:1e-3})
+endsnippet
+
+snippet sk.classify.linear_model.Perceptron "Sklearn:分类器.感知机分类" b
+from sklearn.linear_model import Perceptron
+clf = Perceptron(max_iter=${1:1000}, tol=${2:1e-3})
+endsnippet
+
+snippet sk.classify.naive_bayes.GaussianNB "Sklearn:分类器.朴素贝叶斯分类" b
+from sklearn.naive_bayes import GaussianNB
+clf = GaussianNB()
+endsnippet
+
+### 回归
+snippet sk.regression.linear_model.LinearRegression "Sklearn:回归器.线性回归" b
+from sklearn.linear_model import LinearRegression
+regr = LinearRegression()
+endsnippet
+
+snippet sk.regression.linear_model.Ridge "Sklearn:回归器.岭回归" b
+from sklearn.linear_model import Ridge
+regr = Ridge()
+endsnippet
+
+snippet sk.regression.linear_model.Lasso "Sklearn:回归器.套索回归" b
+from sklearn.linear_model import Lasso
+regr = Lasso()
+endsnippet
+
+snippet sk.regression.linear_model.ElasticNet "Sklearn:回归器.弹性网络" b
+from sklearn.linear_model import ElasticNet
+iregr = ElasticNet(alpha=${1:0.1}, l1_ratio=${2:0.5})
+endsnippet
+
+snippet sk.regression.svm.svr "Sklearn:回归器.SVR" b
+from sklearn.svm import SVR
+regr = SVR(gamma=${1:'scale'}, kernel=${2:'poly'})
+endsnippet
+
+snippet sk.regression.neighbors.KNeighborsRegressor "Sklearn:回归器.K近邻回归" b
+from sklearn.neighbors import KNeighborsRegressor
+regr = KNeighborsRegressor(weights="${1:uniform}")
+endsnippet
+
+snippet sk.regression.tree.DecisionTreeRegressor "Sklearn:回归器.决策树回归" b
+from sklearn.tree import DecisionTreeRegressor
+regr = DecisionTreeRegressor()
+endsnippet
+
+snippet sk.regression.ensemble.RandomForestRegressor "Sklearn:回归器.随机森林回归" b
+from sklearn.ensemble import RandomForestRegressor
+regr = RandomForestRegressor(n_estimators=${1:100})
+endsnippet
+
+snippet sk.regression.ensemble.GradientBoostingRegressor "Sklearn:回归器.梯度提升树回归" b
+from sklearn.ensemble import GradientBoostingRegressor
+regr = GradientBoostingRegressor()
+endsnippet
+
+### 聚类
+snippet sk.cluster.KMeans "Sklearn:聚类.KMeans" b
+from sklearn.cluster import KMeans
+KMeans(init=${1:'k-means++'}, n_clusters=${2:n_clusters}, n_init=${3:10})
+endsnippet
+
+snippet sk.cluster.MiniBatchKMeans "Sklearn:聚类.小批量K均值聚类" b
+from sklearn.cluster import MiniBatchKMeans
+result = MiniBatchKMeans(n_clusters=${1:3}, random_state=${2:9}).fit_predict(${3:X})
+endsnippet
+
+snippet sk.cluster.Birch "Sklearn:聚类.层次分类" b
+from sklearn.cluster import Birch
+result = Birch(n_clusters=${1:3}).fit_predict(${2:X})
+endsnippet
+
+snippet sk.cluster.SpectralClustering "Sklearn:聚类.谱分类" b
+from sklearn.cluster import SpectralClustering
+result = SpectralClustering(n_clusters=$[1:3]).fit_predict(${2:X})
+endsnippet
+
+snippet sk.cluster.AffinityPropagation "Sklearn:聚类.吸引子传播算法" b
+from sklearn.cluster import AffinityPropagation
+result = AffinityPropagation().fit_predict(${1:X})
+endsnippet
+
+snippet sk.cluster.MeanShift "Sklearn:聚类.均值迁移" b
+from sklearn.cluster import MeanShift
+MeanShift()
+endsnippet
+
+snippet sk.cluster.DBSCAN "Sklearn:聚类.基于密度的空间聚类" b
+from sklearn.cluster import DBSCAN
+DBSCAN(eps=${1:3}, # 邻域半径
+	min_samples=${2:2})
+endsnippet
+
+snippet sk.cluster.AgglomerativeClustering "Sklearn:聚类.层次聚类凝聚" b
+from sklearn.cluster import AgglomerativeClustering
+ac = AgglomerativeClustering(n_clusters=${1:2}, affinity=${2:'euclidean'}, linkage=${3:'complete'})
+labels = ac.fit_predict(X)
+endsnippet
+
+### 降维
+snippet sk.decomposition.PCA "Sklearn:降维.PCA主成分分析" b
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2)  # PCA降维到2维
+X_pca = pca.fit_transform(X)
+endsnippet
+
+snippet sk.decomposition.IncrementalPCA "Sklearn:降维.增量PCA" b
+from sklearn.decomposition import IncrementalPCA
+ipca = IncrementalPCA(n_components=${1:2}, batch_size=${2:10})
+X_ipca = ipca.fit_transform(X)
+endsnippet
+
+snippet sk.decomposition.KernelPCA "Sklearn:降维.核PCA" b
+from sklearn.decomposition import KernelPCA
+kpca = KernelPCA(kernel=${1:'rbf'}, fit_inverse_transform=${2:True}, gamma=${3:10})
+endsnippet
+
+### 模型保存
+snippet sk.externals.joblib "Sklearn:加载保存模型" b
+from sklearn.externals import joblib
+joblib.dump(clf, '${1:filename.pkl}')
+clf = joblib.load('${1:filename.pkl}')
+endsnippet
+
+## turicreate
+snippet tc.recommender "Turicreate:推荐系统" b
+import turicreate as tc
+
+actions = tc.SFrame.read_csv('./dataset/ml-20m/ratings.csv')
+training_data, validation_data = tc.recommender.util.random_split_by_user(actions, 'userId', 'movieId')
+model = tc.recommender.create(training_data, 'userId', 'movieId')
+
+results = model.recommend()
+similar_items = model.get_similar_items(my_list_of_items, k=20)
+endsnippet
+
+snippet tc.recommender.item_similarity_recommender "Turicreate:推荐系统.基于item相似推荐" b
+# 个案信息+推荐
+tc.recommender.item_similarity_recommender.create(${1:observation_data}, user_id=${2:'user_id'}, item_id=${3:'item_id'}, target=${4:None}, user_data=${5:None}, item_data=${6:None}, nearest_items=${7:None}, similarity_type=${8:'jaccard'}, threshold=${9:0.001}, only_top_k=${10:64}, verbose=${11:True}, target_memory_usage=${12:8589934592}, ${13:**kwargs})
+endsnippet
+
+snippet tc.recommend.factorization_recommender "Turicreate:推荐系统.因式分解" b
+# 附加信息一同进模型
+turicreate.recommender.factorization_recommender.create(${1:observation_data}, user_id=${2:'user_id'}, item_id=${3:'item_id'}, target=${4:None}, user_data=${5:None}, item_data=${6:None}, num_factors=${7:8}, regularization=${8:1e-08}, linear_regularization=${9:1e-10}, side_data_factorization=${10:True}, nmf=${11:False}, binary_target=${12:False}, max_iterations=${13:50}, sgd_step_size=${14:0}, random_seed=${15:0}, solver=${16:'auto'}, verbose=${17:True}, ${18:**kwargs})
+endsnippet
+
+snippet tc.recommender.item_content_recommender "Turicreate:推荐系统.基于内容的相似推荐" b
+turicreate.recommender.item_content_recommender.create(${1:item_data}, ${2:item_id}, observation_data=${3:None}, user_id=${4:None}, target=${5:None}, weights=${6:'auto'}, similarity_metrics=${7:'auto'}, item_data_transform=${8:'auto'}, max_item_neighborhood_size=${9:64}, verbose=${10:True})
+endsnippet
+
+snippet tc.recommender.popularity_recommender "Turicreate:推荐系统.项目流行度推荐" b
+turicreate.recommender.popularity_recommender.create(${1:observation_data}, user_id=${2:'user_id'}, item_id=${3:'item_id'}, target=${4:None}, user_data=${5:None}, item_data=${6:None}, random_seed=${7:0}, verbose=${8:True})
+endsnippet
+
+snippet tc.compare "Turicreate:模型评估" b
+model_performance = tc.compare(${1:test_data}, [${2:popularity_model, personalized_model}], user_sample=${3:1.0})
+tc.show_comparison(model_performance, [${2:popularity_model, personalized_model}])
+endsnippet
+
+snippet tc.saveModel "Turicreate:保存模型" b
+model.save("${1:my_model}")
+endsnippet
+
+snippet tc.loadModel "Turicreate:加载模型" b
+model = tc.load_model("${1:my_model}")
+endsnippet
